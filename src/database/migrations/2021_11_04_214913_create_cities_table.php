@@ -16,6 +16,7 @@ class CreateCitiesTable extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('id_ibge');
             $table->string('nome');
             $table->string('uf');
             $table->char('status',1)->default(1);
