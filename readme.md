@@ -29,7 +29,7 @@ This will create a dockerized stack for a Lumen application, consisted of the fo
 
 * Depending on your OS, the appropriate version of Docker Community Edition has to be installed on your machine.  ([Download Docker Community Edition](https://hub.docker.com/search/?type=edition&offering=community))
 
-**Installation steps:** 
+**steps:** 
 
 1. Access te bash app and run migrate
 
@@ -40,7 +40,17 @@ This will create a dockerized stack for a Lumen application, consisted of the fo
     $ php artisan migrate --seed
     ```
 
-2. That's it! Navigate to [http://localhost](http://localhost) to access the application.
+2. Use [http://localhost](http://localhost) in postman ou other xxx.
+
+3. Use Artisan command for import cities
+
+   **Lumen**
+
+    ```
+    $ docker exec -it app bash
+    $ php artisan ibge:cities:import UF
+    ```
+*inform only two caracters for uf's in Brasil
 
 **Default configuration values** 
 

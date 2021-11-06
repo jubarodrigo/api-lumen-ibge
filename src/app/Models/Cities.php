@@ -9,10 +9,8 @@ class Cities extends Model
     protected $fillable = [
         'id',
         'id_ibge',
-        'logradouro',
-        'numero',
-        'bairro',
-        'cities_id',
+        'nome',
+        'uf',
         'status',
     ];
 }

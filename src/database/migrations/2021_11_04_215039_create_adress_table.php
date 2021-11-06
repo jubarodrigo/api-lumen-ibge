@@ -16,6 +16,7 @@ class CreateAdressTable extends Migration
         Schema::create('adress', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('cities_id')->unsigned();
             $table->string('logradouro');
             $table->integer('numero');
             $table->string('bairro');
