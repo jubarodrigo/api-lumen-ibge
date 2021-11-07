@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ufs;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call('UsersTableSeeder');
+        $this->call(UfsSeeder::class);
+
     }
 }

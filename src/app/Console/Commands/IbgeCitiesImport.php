@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Ufs;
 use Illuminate\Console\Command;
 use App\Services\CitiesService;
 
@@ -41,12 +42,15 @@ class IbgeCitiesImport extends Command
     {
         $uf = $this->argument('uf');
 
+        $validate = Ufs::where('sigla',$uf)->first();
+        if ($validate == null ){
+            throw new \Exception("UF informada não valida: ".$uf);
+        }
+
         $citiesService = new CitiesService();
-        $teste = $citiesService->importCitiesIbge($uf);
+        $citiesService->importCitiesIbge($uf);
 
-        var_dump($teste);exit();
-
-
-        $this->info('hello world.'.$uf);
+        $this->info('Importações concluidas: '.$uf);
     }
+
 }

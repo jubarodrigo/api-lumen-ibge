@@ -3,8 +3,6 @@
 namespace App\Services;
 
 use App\Models\Cities;
-use App\Services\IbgeService;
-use phpDocumentor\Reflection\Types\Integer;
 
 class CitiesService
 {
@@ -16,7 +14,7 @@ class CitiesService
         $this->ibgeService = new IbgeService();
     }
 
-    public function importCitiesIbge(string $uf)
+    public function importCitiesIbge(string $uf) : bool
     {
         $cities = $this->ibgeService->getCitiesByUf($uf);
 
@@ -24,20 +22,29 @@ class CitiesService
             $this->saveCitie($citie);
         }
 
-        return $cities;
+        return true;
     }
 
     public function saveCitie(object $cities)
     {
-        $citie = Cities::where('id_ibge',$cities->id)->first();
+        try {
 
-        if ($citie == null) {
-            $newCitie = new Cities();
-            $newCitie->id_ibge = $cities->id;
-            $newCitie->nome = $cities->nome;
-            $newCitie->uf = $cities->microrregiao->mesorregiao->UF->sigla;
-            $newCitie->save();
+            $citie = Cities::where('id_ibge',$cities->id)->first();
+
+            if ($citie == null) {
+                $newCitie = new Cities();
+                $newCitie->id_ibge = $cities->id;
+                $newCitie->nome = $cities->nome;
+                $newCitie->uf = $cities->microrregiao->mesorregiao->UF->sigla;
+                $newCitie->save();
+            }
+
+            return;
+
+        }catch(\Exception $th){
+            throw new \Exception("Erro ao salvar cidade. Log: ".$th);
         }
+
 
     }
 
