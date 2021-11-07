@@ -42,15 +42,15 @@ class IbgeCitiesImport extends Command
     {
         $uf = $this->argument('uf');
 
-        $validate = Ufs::where('sigla',$uf)->first();
-        if ($validate == null ){
-            throw new \Exception("UF informada não valida: ".$uf);
+        $validate = Ufs::where('sigla', $uf)->first();
+        if ($validate == null) {
+            throw new \Exception("UF informada não valida: " . $uf);
         }
 
         $citiesService = new CitiesService();
         $citiesService->importCitiesIbge($uf);
 
-        $this->info('Importações concluidas: '.$uf);
+        $this->info('Importações concluidas: ' . $uf);
     }
 
 }

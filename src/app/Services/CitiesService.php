@@ -7,6 +7,9 @@ use App\Models\Cities;
 class CitiesService
 {
 
+    /**
+     * @var IbgeService
+     */
     protected $ibgeService;
 
     public function __construct()
@@ -14,7 +17,12 @@ class CitiesService
         $this->ibgeService = new IbgeService();
     }
 
-    public function importCitiesIbge(string $uf) : bool
+    /**
+     * @param string $uf
+     * @return bool
+     * @throws \Exception
+     */
+    public function importCitiesIbge(string $uf): bool
     {
         $cities = $this->ibgeService->getCitiesByUf($uf);
 
@@ -25,11 +33,15 @@ class CitiesService
         return true;
     }
 
+    /**
+     * @param object $cities
+     * @throws \Exception
+     */
     public function saveCitie(object $cities)
     {
         try {
 
-            $citie = Cities::where('id_ibge',$cities->id)->first();
+            $citie = Cities::where('id_ibge', $cities->id)->first();
 
             if ($citie == null) {
                 $newCitie = new Cities();
@@ -41,8 +53,8 @@ class CitiesService
 
             return;
 
-        }catch(\Exception $th){
-            throw new \Exception("Erro ao salvar cidade. Log: ".$th);
+        } catch (\Exception $th) {
+            throw new \Exception("Erro ao salvar cidade. Log: " . $th);
         }
 
 

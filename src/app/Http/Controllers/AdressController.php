@@ -6,15 +6,7 @@ use Illuminate\Http\Request;
 
 class AdressController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //class ExampleController extends Controller
-{
+
     /**
      * Create a new controller instance.
      *
@@ -25,8 +17,14 @@ class AdressController extends Controller
         //
     }
 
-    //
-}
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //lass ExampleController extends Controller
     }
 
     /**

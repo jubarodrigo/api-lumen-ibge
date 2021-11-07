@@ -17,13 +17,18 @@ class IbgeService
         $this->http_service = new HttpService('https://servicodados.ibge.gov.br/api/v1/');
     }
 
+    /**
+     * @param string $uf
+     * @return int|mixed|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function getCitiesByUf(string $uf)
     {
         try {
 
             $association_uri = "localidades/estados/{$uf}/municipios";
 
-            $response = $this->http_service->request("GET",$association_uri);
+            $response = $this->http_service->request("GET", $association_uri);
             return $response->getBody()->getContents();
 
         } catch (\Exception $exception) {
