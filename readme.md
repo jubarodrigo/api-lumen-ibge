@@ -61,4 +61,10 @@ The following values should be replaced in your `.env` file if you're willing to
     DB_DATABASE=appdb
     DB_USERNAME=user
     DB_PASSWORD=myuserpass
-    
+
+**Running Tests** 
+
+    ```
+    $ docker exec -it app bash
+    $ ./vendor/bin/phpunit
+    ```
