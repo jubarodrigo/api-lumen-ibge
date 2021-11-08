@@ -20,7 +20,7 @@ class CitiesService
     /**
      * @param string $uf
      * @return bool
-     * @throws \Exception
+     * @throws \Exception|\GuzzleHttp\Exception\GuzzleException
      */
     public function importCitiesIbge(string $uf): bool
     {
@@ -53,10 +53,9 @@ class CitiesService
 
             return;
 
-        } catch (\Exception $th) {
-            throw new \Exception("Erro ao salvar cidade. Log: " . $th);
+        } catch (\Exception $err) {
+            throw new \Exception("Erro ao salvar cidade. Log: " . $err);
         }
-
 
     }
 
